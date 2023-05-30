@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="nati_category_access_groups_partner"  model="ir.module.category" >
+            <field name="name">PartnerAccess</field>
+            <field name="description">User access level to Partner</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="nati_group_show_levelall" model="res.groups">
+            <field name="name">All</field>
+            <field name="category_id" ref="nati_category_access_groups_partner"/>
+            <field name="sequence_access" eval="5"/>
+        </record>
+        <record id="nati_group_show_level4" model="res.groups">
+            <field name="name">Areas</field>
+            <field name="category_id" ref="nati_category_access_groups_partner"/>
+            <field name="sequence_access" eval="4"/>
+        </record>
+        <record id="nati_group_show_level3" model="res.groups">
+            <field name="name">Cities</field>
+            <field name="category_id" ref="nati_category_access_groups_partner"/>
+            <field name="implied_ids" eval="[(4, ref('nati_group_show_level4'))]"/>
+            <field name="sequence_access" eval="3"/>
+        </record>
+        <record id="nati_group_show_level2" model="res.groups">
+            <field name="name">Districts</field>
+            <field name="category_id" ref="nati_category_access_groups_partner"/>
+            <field name="implied_ids" eval="[(4, ref('nati_group_show_level4')),(4, ref('nati_group_show_level3'))]"/>
+            <field name="sequence_access" eval="2"/>
+        </record>
+        <record id="nati_group_show_level1" model="res.groups">
+            <field name="name">Countries</field>
+            <field name="category_id" ref="nati_category_access_groups_partner"/>
+            <field name="implied_ids" eval="[(4, ref('nati_group_show_level4')),(4, ref('nati_group_show_level3')),(4, ref('nati_group_show_level2'))]"/>
+            <field name="sequence_access" eval="1"/>
+        </record>
+        <record id="nati_group_show_level0" model="res.groups">
+            <field name="name">System</field>
+            <field name="category_id" ref="nati_category_access_groups_partner"/>
+            <field name="implied_ids" eval="[(4, ref('nati_group_show_level4')),(4, ref('nati_group_show_level3')),(4, ref('nati_group_show_level2')),(4, ref('nati_group_show_level1'))]"/>
+            <field name="sequence_access" eval="0"/>
+        </record>
+         <record id="base.group_erp_manager" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('nati_group_show_level0'))]"/>
+        </record>
+         <record id="base.group_user" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('nati_group_show_levelall'))]"/>
+        </record>
+        <record id="nati_rule_show_partner" model="ir.rule" >
+            <field name="name">Show Partner Rule</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+           <field name="domain_force">['|','|',('access_groups','=',False),('access_groups', 'in', [g.id for g in user.groups_id]),('user_ids','in',user.id),]</field>
+
+        </record>
+
+    </data>
+
+
+</odoo>

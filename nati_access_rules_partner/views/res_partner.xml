@@ -1,0 +1,56 @@
+<odoo>
+    <data noupdate="1">
+<record id="sequence_partner_access" model="ir.sequence">
+   <field name="name">Partner Access</field>
+   <field name="code">partner.access</field>
+   <field name="active">TRUE</field>
+   <field name="number_next">10</field>
+   <field name="number_increment">1</field>
+</record>
+    </data>
+  <data>
+<!--> domain="[('category_id', 'ilike', 'Partner Access')]" <-->
+      <record id="nati_view_partner_property_form" model="ir.ui.view">
+          <field name="name">nati.res.partner.view.form</field>
+          <field name="model">res.partner</field>
+          <field name="inherit_id" ref="base.view_partner_form"/>
+          <field name="arch" type="xml">
+              <field name="vat" position="after">
+                <field name="crn"/>
+                  <div></div>
+                 <div class="alert alert-warning oe_edit_only" role="alert" attrs="{'invisible': [('same_crn_partner_id', '=', False)]}">
+                       exists (<field name="same_crn_partner_id"/>)
+                  </div>
+            </field>
+
+              <field name="user_ids" position="after">
+                   <div></div>
+                   <div class="alert alert-warning oe_edit_only" role="alert" attrs="{'invisible': [('same_mobile_partner_id', '=', False)]}">
+                       exists (<field name="same_mobile_partner_id"/>)
+                  </div>
+                  <field name= "trackingaccessgroups" invisible="1"/>
+                  <field name="access_groups" widget="many2many_tags" options="{'color_field': 'color',}"
+                       groups="nati_access_rules_partner.nati_group_show_level0"
+                       domain="[('category_id', '=', 'PartnerAccess')]"
+                  />
+
+                <!-->  <field name="mobile" onchange="validate_mobile(mobile)" placeholder="Enter your mobile number"/><-->
+
+              </field>
+          </field>
+      </record>
+      <record id="nati_view_partner_rules_tree" model="ir.ui.view">
+          <field name="name">nati.res.partner.rules.tree</field>
+          <field name="model">res.partner</field>
+          <field name="inherit_id" ref="base.view_partner_tree"/>
+          <field name="arch" type="xml">
+              <field name="phone" position="after">
+                  <field name="mobile" class="o_force_ltr" optional="show"/>
+              </field>
+              <field name="user_id" position="after">
+                  <field name="create_uid" optional="show" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+              </field>
+          </field>
+      </record>
+  </data>
+</odoo>

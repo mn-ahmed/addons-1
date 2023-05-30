@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="nati_view_groups_form" model="ir.ui.view">
+          <field name="name">nati.res.groups.view.form</field>
+          <field name="model">res.groups</field>
+          <field name="inherit_id" ref="base.view_groups_form"/>
+          <field name="arch" type="xml">
+              <field name="share" position="after">
+                  <field name="sequence_access"/>
+              </field>
+          </field>
+      </record>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <record id="view_configure_instance_installer" model="ir.ui.view">
+      <field name="name">odoo_sh_community.config.installer.form</field>
+      <field name="model">odoo_sh_community.config.installer</field>
+      <field name="arch" type="xml">
+        <form string="SE Repository Management Settings">
+          <sheet>
+            <group>
+              <group>
+                <field name="addons_path"/>
+                <field name="uploaded_modules_path"/>
+              </group>
+            </group>
+            <footer>
+              <button name="action_next" type="object" string="Continue" class="oe_highlight"/>
+            </footer>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_configure_instance_installer" model="ir.actions.act_window">
+      <field name="name">Setup your repositories main path</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">odoo_sh_community.config.installer</field>
+      <field name="view_id" ref="view_configure_instance_installer"/>
+      <!-- <field name="view_type">form</field> -->
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+    <record id="odoo_sh_community_configuration_installer_todo" model="ir.actions.todo">
+      <field name="name">Setup your repositories main path</field>
+      <field name="action_id" ref="action_configure_instance_installer"/>
+      <field name="sequence">1</field>
+      <!-- <field name="type">automatic</field> -->
+    </record>
+  </data>
+</odoo>

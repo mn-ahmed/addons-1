@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <!-- Hide sale persone -->
+    	<xpath expr="//div[@t-if='doc.user_id.name']" position="replace">
+            <div t-if="doc.tag_ids" class="col-auto col-3 mw-100 mb-2">
+                <t t-set="tags" t-value="doc.tag_ids"/>
+                <t t-foreach="tags" t-as="line">
+                    <tr> <span t-esc="line.name"/></tr>
+                </t>
+            </div>
+	    </xpath>
+        <xpath expr="//thead" position="replace">
+            <thead style="display: table-row-group">
+                    <tr>
+                        <th name="th_description" class="text-start">Description</th>
+                        <t t-if="is_photo">
+                            <th class="text-right">Image</th>
+                        </t>
+                        <th name="th_quantity" class="text-end">Quantity</th>
+                        <t t-if="no_disc">
+                            <th name="th_priceunit" class="text-end">Unit Price</th>
+                            <th name="th_taxes" class="text-end">Taxes</th>
+                            <th name="th_subtotal" class="text-end">
+                                <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                            </th>
+                        </t>
+                        <t t-elif="not no_disc">
+                            <th name="th_priceunit" class="text-end">Unit Price</th>
+                            <th name="th_discount" t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
+                                <span>Disc.%</span>
+                            </th>
+                            <th name="th_taxes" class="text-end">Taxes</th>
+                            <th name="th_subtotal" class="text-end">
+                                <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                            </th>
+                        </t>
+                    </tr>
+                </thead>
+        </xpath>
+
+
+        <xpath expr="//t[@t-if='not line.display_type']" position="replace">
+            <t t-if="not line.display_type">
+                <t t-if="not line.product_id.timbre_fiscal">
+                    <td name="td_name"><span t-field="line.name"/></td>
+                    <t t-if="is_photo">
+			            <td class="text-right"><img t-if="line.image_128" t-att-src="image_data_uri(line.image_128)" style="width: 90%"/></td>
+                    </t>
+                    <td name="td_quantity" class="text-end">
+                        <span t-field="line.product_uom_qty"/>
+                        <span t-field="line.product_uom"/>
+                    </td>
+                     <t t-if="no_disc">
+                        <td name="td_priceunit" class="text-end">
+                            <span t-esc="'%.3f'%(line.price_subtotal/line.product_uom_qty)" groups="account.group_show_line_subtotals_tax_excluded"/>
+                            <span t-esc="'%.3f'%(line.price_total/line.product_uom_qty)" groups="account.group_show_line_subtotals_tax_included"/>
+                        </td>
+                    </t>
+                    <t t-elif="not no_disc">
+                        <td name="td_priceunit" class="text-end">
+                            <span t-field="line.price_unit"/>
+                        </td>
+                        <td t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
+                            <span t-field="line.discount"/>
+                        </td>
+                    </t>
+                    <td name="td_taxes" class="text-end">
+                        <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                    </td>
+                    <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
+                        <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                        <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                    </td>
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-call='account.document_tax_totals']" position="replace">
+            <t t-call="sale_custom_report.document_tax_totals_inherit"/>
+        </xpath>
+    </template>
+
+    <template id="document_tax_totals_inherit"> <!-- inherit_id="account.document_tax_totals"-->
+         <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+            <tr class="border-black o_subtotal">
+                <td><strong t-esc="subtotal['name']"/></td>
+
+                <td class="text-end">
+                    <span
+                        t-att-class="oe_subtotal_footer_separator"
+                        t-esc="subtotal['formatted_amount']"
+                    />
+                </td>
+            </tr>
+            <t t-set="subtotal_to_show" t-value="subtotal['name']"/>
+            <t t-foreach="tax_totals['groups_by_subtotal'][subtotal_to_show]" t-as="amount_by_group">
+                <tr>
+                    <t t-if="amount_by_group['tax_group_name'] != 'Timbre Fiscal'">
+                            <td>
+                                <span t-esc="amount_by_group['tax_group_name']"/>
+                            </td>
+                            <td class="text-end o_price_total">
+                                <span class="text-nowrap" t-esc="amount_by_group['formatted_tax_group_amount']"/>
+                            </td>
+                    </t>
+                </tr>
+            </t>
+            <t t-foreach="tax_totals['groups_by_subtotal'][subtotal_to_show]" t-as="amount_by_group">
+                <tr>
+                    <t t-if="amount_by_group['tax_group_name'] == 'Timbre Fiscal'">
+                        <td>
+                            <span t-esc="amount_by_group['tax_group_name']"/>
+                        </td>
+                        <td class="text-end o_price_total">
+                            <span class="text-nowrap" t-esc="amount_by_group['formatted_tax_group_amount']"/>
+                        </td>
+                    </t>
+                </tr>
+            </t>
+        </t>
+        <t t-set="has_rounding" t-value="'formatted_amount_total_rounded' in tax_totals"/>
+            <!--Total amount with all taxes-->
+            <tr t-attf-style="background-color:#bcbcbc;font-size:16px;" class="border-black o_total">
+                <t t-if="has_rounding"><td>Total</td></t>
+                <t t-else=""><td><strong>Total</strong></td></t>
+                <td class="text-end">
+                    <span t-esc="tax_totals['formatted_amount_total']"/>
+                </td>
+            </tr>
+            <tr t-if="has_rounding">
+                <td><strong>Total Rounded</strong></td>
+                <td class="text-end">
+                    <span t-esc="tax_totals['formatted_amount_total_rounded']"/>
+                </td>
+            </tr>
+    </template>
+
+    <template id="report_saleorder_photo">
+        <t t-call="web.html_container">
+            <t t-set="is_photo" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_saleorder_no_disc">
+        <t t-call="web.html_container">
+            <t t-set="no_disc" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_saleorder_ph_no_disc">
+        <t t-call="web.html_container">
+            <t t-set="no_disc" t-value="True"/>
+            <t t-set="is_photo" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

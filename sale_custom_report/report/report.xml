@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_so_photo" model="ir.actions.report">
+            <field name="name">Devis-photo</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sale_custom_report.report_saleorder_photo</field>
+            <field name="report_file">sale_custom_report.report_saleorder_photo</field>
+            <field name="print_report_name">(object.state in ('draft', 'sent') and 'Devis - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>   
+
+        <record id="action_report_so_no_disc" model="ir.actions.report">
+            <field name="name">Devis no Remise</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sale_custom_report.report_saleorder_no_disc</field>
+            <field name="report_file">sale_custom_report.report_saleorder_no_disc</field>
+            <field name="print_report_name">(object.state in ('draft', 'sent') and 'Devis - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_so_ph_no_disc" model="ir.actions.report">
+            <field name="name">Devis-photo no Remise</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sale_custom_report.report_saleorder_ph_no_disc</field>
+            <field name="report_file">sale_custom_report.report_saleorder_ph_no_disc</field>
+            <field name="print_report_name">(object.state in ('draft', 'sent') and 'Devis - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

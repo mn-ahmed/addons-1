@@ -1,0 +1,184 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* nati_access_rules_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20210603\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-06 07:13+0000\n"
+"PO-Revision-Date: 2021-11-06 07:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner__access_groups
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner__trackingaccessgroups
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_users__access_groups
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_users__trackingaccessgroups
+msgid "Access Group"
+msgstr "مجموعة الوصول"
+
+#. module: nati_access_rules_partner
+#: model:ir.model,name:nati_access_rules_partner.model_res_groups
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz__access_groups
+msgid "Access Groups"
+msgstr "مجموعات الوصول"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_groups__sequence_access
+msgid "Access Sequence"
+msgstr "ترتيب البحث"
+
+#. module: nati_access_rules_partner
+#: model:res.groups,name:nati_access_rules_partner.nati_group_show_levelall
+msgid "All"
+msgstr "الكل"
+
+#. module: nati_access_rules_partner
+#: model:res.groups,name:nati_access_rules_partner.nati_group_show_level4
+msgid "Areas"
+msgstr "الحي"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner__crn
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_users__crn
+msgid "CRN"
+msgstr "السجل التجاري"
+
+#. module: nati_access_rules_partner
+#: model_terms:ir.ui.view,arch_db:nati_access_rules_partner.view_partner_wiz_warn
+msgid "Cancel"
+msgstr "الغاء الامر"
+
+#. module: nati_access_rules_partner
+#: model:res.groups,name:nati_access_rules_partner.nati_group_show_level3
+msgid "Cities"
+msgstr "المدينة"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,help:nati_access_rules_partner.field_res_partner__crn
+#: model:ir.model.fields,help:nati_access_rules_partner.field_res_users__crn
+msgid "Commercial Registration No"
+msgstr "رقم السجل التجاري"
+
+#. module: nati_access_rules_partner
+#: model_terms:ir.ui.view,arch_db:nati_access_rules_partner.view_partner_wiz_warn
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: nati_access_rules_partner
+#: model:ir.model,name:nati_access_rules_partner.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: nati_access_rules_partner
+#: model:res.groups,name:nati_access_rules_partner.nati_group_show_level1
+msgid "Countries"
+msgstr "الدولة"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz__display_name
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_groups__display_name
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: nati_access_rules_partner
+#: model:res.groups,name:nati_access_rules_partner.nati_group_show_level2
+msgid "Districts"
+msgstr "المنطقة"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz__id
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_groups__id
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: nati_access_rules_partner
+#: code:addons/nati_access_rules_partner/models/res_partner.py:0
+#, python-format
+msgid "Invalid Mobile Country."
+msgstr "رقم هاتف محمول غير صالح."
+
+#. module: nati_access_rules_partner
+#: code:addons/nati_access_rules_partner/models/res_partner.py:0
+#, python-format
+msgid "Invalid phone Country."
+msgstr "رقم هاتف غير صالح."
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz____last_update
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_groups____last_update
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_partner_access_wiz__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: nati_access_rules_partner
+#: model:ir.model,name:nati_access_rules_partner.model_partner_access_wiz
+#: model_terms:ir.ui.view,arch_db:nati_access_rules_partner.view_partner_wiz_warn
+msgid "Partner Access Rules"
+msgstr "التحكم في الوصول لجهات الاتصال"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner__same_crn_partner_id
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_users__same_crn_partner_id
+msgid "Partner with same CRN"
+msgstr "العميل بنفس رقم السجل"
+
+#. module: nati_access_rules_partner
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_partner__same_mobile_partner_id
+#: model:ir.model.fields,field_description:nati_access_rules_partner.field_res_users__same_mobile_partner_id
+msgid "Partner with same Mobile NO"
+msgstr "العميل بنفس رقم الموبايل"
+
+#. module: nati_access_rules_partner
+#: model:ir.module.category,name:nati_access_rules_partner.nati_category_access_groups_partner
+msgid "PartnerAccess"
+msgstr ""
+
+#. module: nati_access_rules_partner
+#: model:ir.actions.act_window,name:nati_access_rules_partner.action_partner_access_wiz
+#: model_terms:ir.ui.view,arch_db:nati_access_rules_partner.view_partner_wiz_warn
+msgid "Set Partner Access Rules"
+msgstr "تحديد مجموعة وصول"
+
+#. module: nati_access_rules_partner
+#: model:res.groups,name:nati_access_rules_partner.nati_group_show_level0
+msgid "System"
+msgstr "النظام"
+
+#. module: nati_access_rules_partner
+#: model:ir.module.category,description:nati_access_rules_partner.nati_category_access_groups_partner
+msgid "User access level to Partner"
+msgstr "مستويات مجموعة الوصول لجهات الاتصال"
+
+#. module: nati_access_rules_partner
+#: model_terms:ir.ui.view,arch_db:nati_access_rules_partner.nati_view_partner_property_form
+msgid "exists ("
+msgstr ""
